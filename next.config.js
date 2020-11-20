@@ -1,11 +1,11 @@
 const withCSS = require("@zeit/next-css");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
-// const path = require("path");
+// We can add modify the worker id of yaml in the language object before we initialize the MonacoWebpackPlugin
+// this is what allows us to import monaco-yaml directly into the monacoWebpackPlugin
 const { languagesArr } = require("monaco-editor-webpack-plugin/out/languages");
-
 const yamlLang = languagesArr.find((t) => t.label === "yaml");
-console.log("yamlLang is ", yamlLang);
+
 yamlLang.entry = [
   yamlLang.entry,
   "../../monaco-yaml/lib/esm/monaco.contribution",
@@ -29,7 +29,7 @@ module.exports = withCSS({
 
     config.plugins.push(
       new MonacoWebpackPlugin({
-        // Add languages as needed...
+        // yaml needs to be added in the languates array
         languages: [
           "javascript",
           "typescript",
