@@ -11,11 +11,13 @@
     "@zeit/next-css": "^1.0.1",
     "monaco-editor": "^0.21.2",
     "monaco-editor-webpack-plugin": "2.0.0",
+    "monaco-yaml": "^2.5.1",
     "next": "9.3.1",
     "next-fonts": "^1.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-monaco-editor": "^0.34.0"
+    "react-monaco-editor": "^0.34.0",
+    "worker-loader": "^3.0.5"
   },
   "license": "MIT"
 }

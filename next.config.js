@@ -1,6 +1,20 @@
 const withCSS = require("@zeit/next-css");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
+// const path = require("path");
+const { languagesArr } = require("monaco-editor-webpack-plugin/out/languages");
+
+const yamlLang = languagesArr.find((t) => t.label === "yaml");
+console.log("yamlLang is ", yamlLang);
+yamlLang.entry = [
+  yamlLang.entry,
+  "../../monaco-yaml/lib/esm/monaco.contribution",
+];
+yamlLang.worker = {
+  id: "vs/language/yaml/yamlWorker",
+  entry: "../../monaco-yaml/lib/esm/yaml.worker.js",
+};
+
 module.exports = withCSS({
   webpack: (config) => {
     config.module.rules.push({
@@ -16,7 +30,14 @@ module.exports = withCSS({
     config.plugins.push(
       new MonacoWebpackPlugin({
         // Add languages as needed...
-        languages: ["javascript", "typescript", "html", "json", "handlebars"],
+        languages: [
+          "javascript",
+          "typescript",
+          "html",
+          "json",
+          "handlebars",
+          "yaml",
+        ],
         filename: "static/[name].worker.js",
       })
     );

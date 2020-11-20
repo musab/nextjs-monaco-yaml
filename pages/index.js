@@ -4,11 +4,13 @@ import sample from "../code-sample3";
 
 const MonacoEditor = dynamic(import("react-monaco-editor"), { ssr: false });
 
+// import YamlWorker from "worker-loader!monaco-yaml/lib/esm/yaml.worker";
+
 function IndexPage() {
   return (
     <MonacoEditor
       height={"600px"}
-      language="json"
+      language="yaml"
       theme="vs-dark"
       value={sample}
       onChange={console.log}
@@ -25,6 +27,9 @@ function IndexPage() {
           if (label === "html") return "/_next/static/html.worker.js";
           if (label === "typescript" || label === "javascript")
             return "/_next/static/ts.worker.js";
+          if (label === "yaml") {
+            return "/_next/static/yaml.worker.js";
+          }
           return "/_next/static/editor.worker.js";
         };
       }}
