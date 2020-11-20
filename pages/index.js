@@ -18,7 +18,7 @@ function IndexPage() {
   const editorDidMount = (editor, _monaco) => {
     // editorRef.current = editor;
 
-    console.log(_monaco);
+    // console.log(_monaco);
     const { yaml } = _monaco.languages || {};
     console.log("yaml is ,", yaml);
     yaml &&
@@ -29,10 +29,10 @@ function IndexPage() {
         completion: true,
         enableSchemaRequest: true,
         format: true,
-        // the file path is wrong here - need to figure out how next.js resolves static assets 
         schemas: [
           {
             uri: resolveRelativeUrl("../circleciconfig.json"),
+            // uri: "./circleciconfig.json",
             fileMatch: ["*"],
           },
         ],
@@ -70,7 +70,7 @@ function IndexPage() {
       theme="vs-dark"
       value={value}
       // onChange={console.log}
-      editorDidMount={(editor, _monaco) => {}}
+      editorDidMount={editorDidMount}
     />
   );
 }

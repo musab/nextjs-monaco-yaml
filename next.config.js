@@ -3,6 +3,7 @@ const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 // We can add modify the worker id of yaml in the language object before we initialize the MonacoWebpackPlugin
 // this is what allows us to import monaco-yaml directly into the monacoWebpackPlugin
+// I found this approach on this thread: https://github.com/pengx17/monaco-yaml/issues/20 and this repo:https://github.com/dotansimha/graphql-code-generator/blob/master/website/monaco-plugin.js
 const { languagesArr } = require("monaco-editor-webpack-plugin/out/languages");
 const yamlLang = languagesArr.find((t) => t.label === "yaml");
 

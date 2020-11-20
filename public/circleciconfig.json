@@ -1,0 +1,46 @@
+{
+  "$id": "https://example.com/circleci.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A representation of a executors in circleci config.yml",
+  "type": "object",
+  "properties": {
+    "executors": {
+      "type": "object",
+      "required": ["image"],
+      "properties": {
+        "image": {
+          "type": "string",
+          "enum": ["ubuntu-01", "ubuntu-02", "ubuntu-03"],
+          "description": "The VM image to use. View available images. Note: This key is not supported on the installable CircleCI. For information about customizing machine executor images on CircleCI installed on your servers, see our VM Service documentation."
+        },
+        "docker_layer_caching": {
+          "type": "boolean",
+          "default": false,
+          "description": "Set to true to enable Docker Layer Caching. Note: You must open a support ticket to have a CircleCI Sales representative contact you about enabling this feature on your account for an additional fee."
+        }
+      }
+    }
+  },
+  "defaultSnippets": [
+    {
+      "label": "Executor Template",
+      "description": "representation of a executors",
+      "body": {
+        "executors": {
+          "image": "$1",
+          "docker_layer_caching": "$2"
+        }
+      }
+    },
+    {
+      "label": "Executor Template (prefilled)",
+      "description": "representation of a executors",
+      "body": {
+        "executors": {
+          "image": "ubuntu-01",
+          "docker_layer_caching": false
+        }
+      }
+    }
+  ]
+}
